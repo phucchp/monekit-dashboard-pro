@@ -3,21 +3,21 @@ import { NavLink, Outlet } from 'react-router-dom'
 
 const overviewItems = [{ label: 'Dashboard', to: '/' }]
 const usersDataItems = [
-  { label: 'Customers', to: '/' },
-  { label: 'Transactions', to: '/settings' },
+  { label: 'Customers', to: '/customers' },
+  { label: 'Transactions' },
 ]
 const monetizationItems = [
-  { label: 'Products', to: '/settings' },
-  { label: 'Virtual Currency', to: '/settings' },
-  { label: 'Offerings', to: '/settings' },
-  { label: 'Paywalls', to: '/settings' },
-  { label: 'Entitlements', to: '/settings' },
+  { label: 'Products', to: '/products' },
+  { label: 'Virtual Currency' },
+  { label: 'Offerings' },
+  { label: 'Paywalls' },
+  { label: 'Entitlements' },
 ]
 const configurationItems = [{ label: 'Project Settings', to: '/settings' }]
 
 type NavItem = {
   label: string
-  to: string
+  to?: string
 }
 
 function NavSection({ title, items }: { title: string; items: NavItem[] }) {
@@ -27,20 +27,26 @@ function NavSection({ title, items }: { title: string; items: NavItem[] }) {
       <ul className="mt-2 space-y-1">
         {items.map((item) => (
           <li key={`${title}-${item.label}`}>
-            <NavLink
-              to={item.to}
-              end={item.to === '/'}
-              className={({ isActive }) =>
-                [
-                  'block rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
-                ].join(' ')
-              }
-            >
-              {item.label}
-            </NavLink>
+            {item.to ? (
+              <NavLink
+                to={item.to}
+                end={item.to === '/'}
+                className={({ isActive }) =>
+                  [
+                    'block rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                    isActive
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                  ].join(' ')
+                }
+              >
+                {item.label}
+              </NavLink>
+            ) : (
+              <span className="block cursor-default rounded-lg px-3 py-2 text-sm font-medium text-slate-400">
+                {item.label}
+              </span>
+            )}
           </li>
         ))}
       </ul>
