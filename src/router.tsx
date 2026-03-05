@@ -3,6 +3,9 @@ import DashboardLayout from './layouts/DashboardLayout'
 import CustomersPage from './pages/CustomersPage'
 import DashboardPage from './pages/DashboardPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
+import OfferingCreatePage from './pages/OfferingCreatePage'
+import OfferingDetailPage from './pages/OfferingDetailPage'
+import OfferingsPage from './pages/OfferingsPage'
 import ProductCreatePage from './pages/ProductCreatePage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import ProductListPage from './pages/ProductListPage'
@@ -38,6 +41,9 @@ export const router = createBrowserRouter(
         { path: 'products', element: <ProductListPage /> },
         { path: 'products/new', element: <ProductCreatePage /> },
         { path: 'products/:productId', element: <ProductDetailPage /> },
+        { path: 'offerings', element: <OfferingsPage /> },
+        { path: 'offerings/new', element: <OfferingCreatePage /> },
+        { path: 'offerings/:offeringId', element: <OfferingDetailPage /> },
         { path: 'virtual-currencies', element: <VirtualCurrencyListPage /> },
         { path: 'virtual-currencies/new', element: <VirtualCurrencyCreatePage /> },
         { path: 'virtual-currencies/:currencyId', element: <VirtualCurrencyDetailPage /> },
