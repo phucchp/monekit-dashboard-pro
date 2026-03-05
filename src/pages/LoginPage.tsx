@@ -58,9 +58,12 @@ function LoginPage() {
                 <input type="checkbox" className="h-4 w-4 rounded border-slate-300 text-blue-600" />
                 Remember me
               </label>
-              <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-700">
+              <Link
+                to="/forgot-password"
+                className="text-sm font-semibold text-blue-600 hover:text-blue-700"
+              >
                 Forgot password?
-              </a>
+              </Link>
             </div>
 
             <button
@@ -96,9 +99,9 @@ function LoginPage() {
 
           <p className="mt-6 text-center text-sm text-slate-500">
             New here?{' '}
-            <a href="#" className="font-semibold text-blue-600 hover:text-blue-700">
+            <Link to="/signup" className="font-semibold text-blue-600 hover:text-blue-700">
               Create an account
-            </a>
+            </Link>
           </p>
 
           <div className="mt-8 border-t border-slate-100 pt-5 text-center">

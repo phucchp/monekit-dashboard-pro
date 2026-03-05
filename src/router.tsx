@@ -2,10 +2,12 @@ import { Navigate, createBrowserRouter } from 'react-router-dom'
 import DashboardLayout from './layouts/DashboardLayout'
 import CustomersPage from './pages/CustomersPage'
 import DashboardPage from './pages/DashboardPage'
+import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import ProductCreatePage from './pages/ProductCreatePage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import ProductListPage from './pages/ProductListPage'
 import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
 import SettingsPage from './pages/SettingsPage'
 
 export const router = createBrowserRouter(
@@ -13,6 +15,14 @@ export const router = createBrowserRouter(
     {
       path: '/login',
       element: <LoginPage />,
+    },
+    {
+      path: '/signup',
+      element: <SignUpPage />,
+    },
+    {
+      path: '/forgot-password',
+      element: <ForgotPasswordPage />,
     },
     {
       path: '/',
