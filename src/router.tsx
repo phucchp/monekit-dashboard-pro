@@ -10,6 +10,9 @@ import ProjectsPage from './pages/ProjectsPage'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import SettingsPage from './pages/SettingsPage'
+import VirtualCurrencyCreatePage from './pages/VirtualCurrencyCreatePage'
+import VirtualCurrencyDetailPage from './pages/VirtualCurrencyDetailPage'
+import VirtualCurrencyListPage from './pages/VirtualCurrencyListPage'
 
 export const router = createBrowserRouter(
   [
@@ -35,6 +38,9 @@ export const router = createBrowserRouter(
         { path: 'products', element: <ProductListPage /> },
         { path: 'products/new', element: <ProductCreatePage /> },
         { path: 'products/:productId', element: <ProductDetailPage /> },
+        { path: 'virtual-currencies', element: <VirtualCurrencyListPage /> },
+        { path: 'virtual-currencies/new', element: <VirtualCurrencyCreatePage /> },
+        { path: 'virtual-currencies/:currencyId', element: <VirtualCurrencyDetailPage /> },
         { path: 'settings', element: <SettingsPage /> },
       ],
     },

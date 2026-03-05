@@ -197,7 +197,7 @@ const usersDataItems: NavItem[] = [
 ]
 const monetizationItems: NavItem[] = [
   { label: 'Products', to: '/products', icon: 'products' },
-  { label: 'Virtual Currency', icon: 'currency' },
+  { label: 'Virtual Currency', to: '/virtual-currencies', icon: 'currency' },
   { label: 'Offerings', icon: 'offerings' },
   { label: 'Paywalls', icon: 'paywalls' },
   { label: 'Entitlements', icon: 'entitlements' },
