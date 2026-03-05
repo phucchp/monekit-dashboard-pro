@@ -1,24 +1,210 @@
 import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 
-const overviewItems = [{ label: 'Dashboard', to: '/' }]
-const usersDataItems = [
-  { label: 'Customers', to: '/customers' },
-  { label: 'Transactions' },
-]
-const monetizationItems = [
-  { label: 'Products', to: '/products' },
-  { label: 'Virtual Currency' },
-  { label: 'Offerings' },
-  { label: 'Paywalls' },
-  { label: 'Entitlements' },
-]
-const configurationItems = [{ label: 'Project Settings', to: '/settings' }]
+type IconName =
+  | 'dashboard'
+  | 'projects'
+  | 'analytics'
+  | 'customers'
+  | 'transactions'
+  | 'products'
+  | 'currency'
+  | 'offerings'
+  | 'paywalls'
+  | 'entitlements'
+  | 'settings'
 
 type NavItem = {
   label: string
   to?: string
+  icon: IconName
 }
+
+function NavIcon({ name }: { name: IconName }) {
+  if (name === 'dashboard') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <rect x="3" y="3" width="8" height="8" rx="1.5" />
+        <rect x="13" y="3" width="8" height="5" rx="1.5" />
+        <rect x="13" y="10" width="8" height="11" rx="1.5" />
+        <rect x="3" y="13" width="8" height="8" rx="1.5" />
+      </svg>
+    )
+  }
+
+  if (name === 'customers') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <circle cx="9" cy="8" r="3" />
+        <path d="M3 19a6 6 0 0 1 12 0" />
+        <circle cx="17" cy="9" r="2" />
+      </svg>
+    )
+  }
+
+  if (name === 'projects') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M8 5v14" />
+        <path d="M3 10h18" />
+      </svg>
+    )
+  }
+
+  if (name === 'analytics') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path d="M4 19h16" />
+        <path d="M7 15v-3" />
+        <path d="M12 15V7" />
+        <path d="M17 15v-5" />
+      </svg>
+    )
+  }
+
+  if (name === 'transactions') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M7 8h10" />
+        <path d="M7 12h10" />
+      </svg>
+    )
+  }
+
+  if (name === 'products') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path d="M3 7.5 12 3l9 4.5-9 4.5Z" />
+        <path d="M3 7.5V16.5L12 21l9-4.5V7.5" />
+      </svg>
+    )
+  }
+
+  if (name === 'currency') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <circle cx="12" cy="12" r="8" />
+        <path d="M9 9h5a2 2 0 0 1 0 4H10a2 2 0 0 0 0 4h5" />
+      </svg>
+    )
+  }
+
+  if (name === 'offerings') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path d="M3 12 12 3l9 9-9 9-9-9Z" />
+        <circle cx="12" cy="12" r="2" />
+      </svg>
+    )
+  }
+
+  if (name === 'paywalls') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 10h18" />
+      </svg>
+    )
+  }
+
+  if (name === 'entitlements') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path d="M12 3 4 7v6c0 5 4 7 8 8 4-1 8-3 8-8V7Z" />
+        <path d="m9.5 12.5 1.8 1.8 3.2-3.8" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+      <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.7l.1.1a1.9 1.9 0 1 1-2.6 2.6l-.1-.1a1.6 1.6 0 0 0-1.7-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.7.3l-.1.1a1.9 1.9 0 0 1-2.6-2.6l.1-.1a1.6 1.6 0 0 0 .3-1.7 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.7l-.1-.1a1.9 1.9 0 1 1 2.6-2.6l.1.1a1.6 1.6 0 0 0 1.7.3h.1a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 1 1.5h.1a1.6 1.6 0 0 0 1.7-.3l.1-.1a1.9 1.9 0 1 1 2.6 2.6l-.1.1a1.6 1.6 0 0 0-.3 1.7v.1a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.5 1Z" />
+    </svg>
+  )
+}
+
+const overviewItems: NavItem[] = [
+  { label: 'Dashboard', to: '/', icon: 'dashboard' },
+  { label: 'Projects List', to: '/projects', icon: 'projects' },
+  { label: 'Global Analytics', icon: 'analytics' },
+]
+const usersDataItems: NavItem[] = [
+  { label: 'Customers', to: '/customers', icon: 'customers' },
+  { label: 'Transactions', icon: 'transactions' },
+]
+const monetizationItems: NavItem[] = [
+  { label: 'Products', to: '/products', icon: 'products' },
+  { label: 'Virtual Currency', icon: 'currency' },
+  { label: 'Offerings', icon: 'offerings' },
+  { label: 'Paywalls', icon: 'paywalls' },
+  { label: 'Entitlements', icon: 'entitlements' },
+]
+const configurationItems: NavItem[] = [
+  { label: 'Project Settings', to: '/settings', icon: 'settings' },
+]
 
 function NavSection({ title, items }: { title: string; items: NavItem[] }) {
   return (
@@ -33,17 +219,19 @@ function NavSection({ title, items }: { title: string; items: NavItem[] }) {
                 end={item.to === '/'}
                 className={({ isActive }) =>
                   [
-                    'block rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                    'flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                     isActive
                       ? 'bg-blue-50 text-blue-600'
                       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
                   ].join(' ')
                 }
               >
+                <NavIcon name={item.icon} />
                 {item.label}
               </NavLink>
             ) : (
-              <span className="block cursor-default rounded-lg px-3 py-2 text-sm font-medium text-slate-400">
+              <span className="flex cursor-default items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-400">
+                <NavIcon name={item.icon} />
                 {item.label}
               </span>
             )}
@@ -75,7 +263,13 @@ function DashboardLayout() {
                 onClick={() => setMenuOpen((prev) => !prev)}
                 aria-label="Toggle navigation menu"
               >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M4 7h16" />
                   <path d="M4 12h16" />
                   <path d="M4 17h16" />
@@ -103,7 +297,12 @@ function DashboardLayout() {
             </div>
           </div>
 
-          <div className={[menuOpen ? 'block' : 'hidden', 'lg:block lg:flex lg:flex-1 lg:flex-col'].join(' ')}>
+          <div
+            className={[
+              menuOpen ? 'block' : 'hidden',
+              'lg:block lg:flex lg:flex-1 lg:flex-col',
+            ].join(' ')}
+          >
             <nav className="space-y-6 p-4 lg:flex-1 lg:overflow-y-auto">
               <NavSection title="Overview" items={overviewItems} />
               <NavSection title="Users & Data" items={usersDataItems} />

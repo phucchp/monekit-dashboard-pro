@@ -6,6 +6,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import ProductCreatePage from './pages/ProductCreatePage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import ProductListPage from './pages/ProductListPage'
+import ProjectsPage from './pages/ProjectsPage'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import SettingsPage from './pages/SettingsPage'
@@ -29,6 +30,7 @@ export const router = createBrowserRouter(
       element: <DashboardLayout />,
       children: [
         { index: true, element: <DashboardPage /> },
+        { path: 'projects', element: <ProjectsPage /> },
         { path: 'customers', element: <CustomersPage /> },
         { path: 'products', element: <ProductListPage /> },
         { path: 'products/new', element: <ProductCreatePage /> },
